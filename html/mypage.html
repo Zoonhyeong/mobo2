@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mypage</title>
+    <script src="https://kit.fontawesome.com/e26708e58d.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mypage.css">
+</head>
+<style>
+    #withdraw p, #change-infomation p{
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+    #change-infomation{
+        margin-left: 23px;
+        margin-top: 40px;
+        width: 221px;
+        height: 73px;
+        
+        background: #9D5F37;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        text-decoration-line:none ;
+    }
+    .right-text{
+        display: inline-block;
+        margin-top: 14px;
+        width: 240px;
+        height: 24px;
+    
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+        
+        color: #333333;
+    }
+</style>
+<body>
+
+<div class="flex-col-center">
+    <div id="top">M O B O</div>
+    <div><p id="text-top-join" onclick="window.location='join.html'">JOIN</p><p id="text-top-login" onclick="window.location='login.html'">LOGOUT</p></div>
+    <div>
+    <p class="flex-row" id="MOBO-SUBLIST-MYSUB">
+        <a>MOBO</a>
+        <a>SUB LIST</a>
+        <a>MYSUB</a>
+    </p>
+    </div>
+
+
+<div class="flex-col-center" id="list-box">
+    <div id="text-bord2">
+        <div class="list-line list-profile sub-title">
+            <i class="fa-solid fa-chevron-left" onclick="lastPage()"></i>
+            <p class="list-nickname" style="font-size: 24px;">내 정보</p>
+            <i class="fa-solid fa-pencil" onclick="editPage()"></i>
+        </div>
+    </div>
+    <div id="picture"></div>
+    <div class="browntext" id="user-name"></div>
+    <div class="border-line"></div>
+    <div id="default-infomation">
+        <div style="height:20px"></div> 
+        <div class="browntext">기본정보</div>
+        <div style="height:20px"></div> 
+        <div class="left-text">E-Mail</div><div id="user-email" class="right-text"></div><br>
+        <div class="left-text">한줄소개</div><div id="user-intro" class="right-text"></div><br>
+    </div>
+    <div class="flex-row btn-box">
+        <div id="withdraw"><p>회원 탈퇴</p></div>
+        <a href="./change_mypage.html" id="change-infomation"><p>정보 수정</p></a>
+    </div>
+</div>
+
+<div class="flex-row-center" id="bottom"><p>MYONGJI Uni. Team Project</p></div>
+</div>
+</div>
+
+</body>
+<script>
+    
+
+</script>
+<script src="/js/mypage.js"></script>
+</html>

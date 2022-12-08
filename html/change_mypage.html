@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mypage</title>
+    <script src="https://kit.fontawesome.com/e26708e58d.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mypage.css">
+</head>
+<style>
+    #finish-infomation {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        color: #FFFFFF;
+        border: 0;
+    }
+
+    #finish-infomation {
+        margin-top: 40px;
+        width: 221px;
+        height: 73px;
+
+        background: #9D5F37;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        text-decoration-line: none;
+    }
+
+    #camera {
+        background-image: url("../img/camera.png");
+        border-radius: 50%;
+        border: 1px solid #949494;
+        position: absolute;
+        z-index: 3;
+        width: 30px;
+        height: 30px;
+        margin-left: 74px;
+        top: 370px;
+    }
+
+    .graytext {
+        border: 0;
+        border-bottom: 1px solid;
+        display: inline-block;
+        margin-top: 11px;
+        width: 240px;
+        height: 24px;
+
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+
+        color: rgba(51, 51, 51, 0.522);
+        margin-left: 10px;
+    }
+
+    .graytext:focus {
+        outline: none;
+    }
+
+    #user-name {
+        text-align: center;
+    }
+
+    @media screen and (max-width: 550px) {
+        .graytext {
+            margin-left: 0px;
+            margin-right: 10px;
+            width: 240px;
+        }
+
+        .left-text {
+            margin-left: 10px;
+        }
+
+        .browntext {
+            margin-left: 10px;
+        }
+    }
+</style>
+
+<body>
+
+    <div class="flex-col-center">
+        <div id="top">M O B O</div>
+        <div>
+            <p id="text-top-join" onclick="window.location='join.html'">JOIN</p>
+            <p id="text-top-login" onclick="window.location='login.html'">LOGOUT</p>
+        </div>
+        <div>
+            <p class="flex-row" id="MOBO-SUBLIST-MYSUB">
+                <a>MOBO</a>
+                <a>SUB LIST</a>
+                <a>MYSUB</a>
+            </p>
+        </div>
+
+
+        <div class="flex-col-center" id="list-box">
+            <div id="text-bord2">
+                <div class="list-line list-profile sub-title">
+                    <i class="fa-solid fa-chevron-left" onclick="lastPage()"></i>
+                    <p class="list-nickname" style="font-size: 24px;">내 정보 수정</p>
+                    <i class="fa-solid fa-pencil"></i>
+                </div>
+            </div>
+            <div id="picture"></div>
+            <div id="camera"></div>
+            <input type="text" class="graytext" id="user-name">
+            <div class="border-line"></div>
+            <div>
+                <div id="default-infomation">
+                    <div style="height:20px"></div>
+                    <div class="browntext">기본정보</div>
+                    <div style="height:20px"></div>
+                    <div class="left-text">E-Mail</div><input class="graytext" id="user-email"><br>
+                    <div class="left-text">한줄소개</div><input class="graytext" id="user-intro"><br>
+                </div>
+                <div class="flex-row">
+                    <input type="submit" class="edit-btn" value="수정 완료" onclick='put_data()'>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-row-center" id="bottom">
+            <p>MYONGJI Uni. Team Project</p>
+        </div>
+    </div>
+    </div>
+
+</body>
+<script src="/js/change_mypage.js"></script>
+
+</html>

@@ -1,0 +1,43 @@
+.input-text{
+    padding-left: 28px;
+    width: 371px;
+    height: 73px;
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    margin-top: 0;
+    margin-bottom: 19px;
+    border: 0;
+}
+.input-text:focus{
+    outline: none;
+    background-color: rgb(244, 241, 237);
+}
+#btn-box{
+    margin-top: 10px;
+    background-color: rgba(234, 157, 4, 0.56);
+    width: 458px;
+    height: 473px;
+    border-radius: 15px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+#login-btn{
+    padding-left: 0px;
+    background-color: rgba(125, 45, 0, 0.74);
+    color: white;
+    text-align: center;
+    margin-top: 23px;
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 31px;
+    display: flex;
+    align-items:center;
+}
+#go-join{
+    font-weight: 550;
+    font-size: 14px;
+    line-height: 17px;
+}
+#go-join a[href]{
+    color: #7D2D00;
+}

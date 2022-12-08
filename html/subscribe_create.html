@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <link rel="stylesheet" href="../css/list.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://kit.fontawesome.com/e26708e58d.js" crossorigin="anonymous"></script>
+    <script src="../js/list.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="../js/list.js"></script>
+    <script src="../js/subscribe_create.js"></script>
+    <style>
+        #pop-up{
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        #pop-up > article{
+            width: 300px;
+            height: 350px;
+            position: relative;
+            z-index: 2;
+            top: 300px;
+            background: #EDEDED;;
+            border-radius: 10px;
+            border: 3px solid #7D2D00;
+            box-shadow: 2px 2px 5px rgb(66, 66, 66);
+            margin: auto;
+            cursor: pointer;
+            text-align: center;
+        }
+        .black{
+            background: rgba(0, 0, 0, 0.4);
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            $("#plus > button:first-of-type").click(function(){
+                $("#pop-up").fadeIn();
+                $("#pop-up").addClass("black");
+            });
+            $("#pop-up > article > form > .folder-create-box").click(function(){
+                $(this).parent().fadeOut();
+            });
+        })
+    </script>
+</head>
+<body>
+
+<div class="flex-col-center">
+    <div id="top" onclick="listPage()">M O B O</div>
+    <div><p id="text-top-join" onclick="window.location='join.html'">JOIN</p><p id="text-top-login" onclick="window.location='login.html'">LOGOUT</p></div>
+        <div>
+        <p class="flex-row" id="MOBO-SUBLIST-MYSUB">
+            <a>MOBO</a>
+            <a>SUB LIST</a>
+            <a>MYSUB</a>
+        </p>
+    </div>
+    <div class="flex-col-center" id="list-box">
+        <div id="text-bord2">
+            <div class="list-line new-sub sub-title">
+                <i class="fa-solid fa-chevron-left" onclick="lastPage()"></i>
+                <p class="list-nickname" style="font-size: 24px;">구독정보 등록</p>
+            </div>
+            <div class="sub-form-write">
+                <form action="#">
+                    <div class="img-box">
+                        <label class="input-file-button" for="input-file">
+                            <i class="fa-regular fa-image"></i>
+                        </label>
+                        <input type="file" id="input-file" style="display:none;">
+                        <p class="file-txt">모보는 여러분의 문화생활을 응원합니다</p>
+                    </div>
+
+                    <div class="list-line">
+                        <p class="list-title">기본 정보</p>
+                        <div class="info-name flex-box">
+                            <p>상품명</p>
+                            <div>
+                                <select name="item-name" class="input-box" id="select-box">
+                                    <option value="">구독 상품명 선택</option>
+                                    <option value="netflix">넷플릭스</option>
+                                    <option value="youtubepremium">유튜브 프리미엄</option>
+                                    <option value="melon">멜론</option>
+                                    <option value="enter">직접입력</option>
+                                </select>
+                                <div id="writing-box">
+                                    <input type="text" placeholder="구독 상품명을 입력해주세요">
+                                </div>
+                            </div>
+                            <script>
+                                $(document).ready(function(){
+                                    $('#writing-box').hide();
+                                    $("select[id='select-box']").on("change", function(){
+                                        var option = $("#select-box option:selected").val();
+                                        if(option == "enter"){
+                                            $('#writing-box').show();
+                                        }else{
+                                            $('#writing-box').hide();
+                                        }
+                                    })
+                                })
+                            </script>
+                        </div>
+                        <div class="folder-name flex-box">
+                            <p>카테고리</p>
+                            <div>
+                                <select name="folder-name" id="select-box2" class="select-box-class">
+                                    <option value="">폴더 선택</option>
+                                    <option value="none">선택안함</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="info-price flex-box">
+                            <p>결제 금액</p>
+                            <input type="text" placeholder="정기구독 금액을 입력해주세요" class="input-box" id="pay-price">
+                        </div>
+                        <div class="info-date flex-box">
+                            <p>결제 정보</p>
+                            <div class="info-date-input-box">
+                                <input type="date" placeholder="2022.11.05" class="input-box" id="start-date">부터
+                                <p>
+                                    [결제일 단위 선택]
+                                    <input type="radio" id="radio-week" name="radio-pick" value="주">
+                                    <label for="radio-week">주</label>
+                                    <input type="radio" id="radio-month" name="radio-pick" value="월">
+                                    <label for="radio-month">월</label>
+                                    <br>
+                                    <div id="month-box">
+                                        <input type="text" placeholder="1" class="input-box" id="month-unit">개월마다
+                                        <input type="text" placeholder="25" class="input-box" id="month-date">일에 결제됩니다.
+                                    </div>
+                                    <div id="week-box">
+                                        <input type="text" placeholder="1" class="input-box" id="week-unit">주마다 결제됩니다.
+                                    </div>
+                                    <script>
+                                        $(document).ready(function(){
+                                            $('#month-box').hide();
+                                            $('#week-box').hide();
+
+                                            $("input[name='radio-pick']").change(function(){
+                                                if($("input[name='radio-pick']:checked").val() == '주'){
+                                                    $('#month-box').hide();
+                                                    $('#week-box').show();
+                                                }
+                                                else if($("input[name='radio-pick']:checked").val() == '월'){
+                                                    $('#month-box').show();
+                                                    $('#week-box').hide();
+                                                }
+                                            })
+                                        })
+                                    </script>
+                                </p>
+                            </div>
+                        </div>
+                        <input type="submit" value="정보 등록" class="create-btn" onclick="sub_create()">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-row-center" id="bottom" style="z-index: 3;"><p>MYONGJI Uni. Team Project</p></div>
+</div>
+
+</body>
+</html>

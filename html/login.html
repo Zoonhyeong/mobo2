@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+
+<div class="flex-col-center">
+    <div id="top">M O B O</div>
+    <div><p id="text-top-join" onclick="window.location='join.html'">JOIN</p><p id="text-top-login" onclick="window.location='login.html'">LOGIN</p></div>
+        <div>
+        <p class="flex-row" id="MOBO-SUBLIST-MYSUB">
+            <a>MOBO</a>
+            <a>SUB LIST</a>
+            <a>MYSUB</a>
+        </p>
+    </div>
+    <div class="flex-col-center" id="btn-box">
+        <div id="text-bord">
+        <p>MOBO LOGIN</p>
+        </div>
+        <div class="flex-col-center">
+            <input name="username" type="text" class="input-text" id="email-btn" placeholder="아이디를 입력해주세요">
+            <input name="password" type="password" class="input-text" id="passwd-btn" placeholder="비밀번호를 입력해주세요" minlength="8">
+            <button class="flex-row-center input-text" id="login-btn" onclick="show_members()">LOGIN</button>
+            <p id="go-join">아직 회원이 아니신가요? <a href="join.html">회원가입</a>하러가기</p>
+        </div>
+    </div>
+    <div class="flex-row-center" id="bottom"><p>MYONGJI Uni. Team Project</p></div>
+</div>
+
+<script>
+    function show_members(){
+    const username = document.getElementById("email-btn")
+    const password = document.getElementById("passwd-btn")
+
+        fetch("http://127.0.0.1:8000/api/signin/",{
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            username: username.value,
+            password: password.value,
+            }),
+        })
+        .then((result) => {
+            console.log(result);
+            result.json();
+            if(result.status==200){
+                
+                window.localStorage.setItem('name', username.value)
+                window.localStorage.setItem('password', password.value)
+                location='list.html'
+            } else if(result.status==401){
+                alert("아이디나 비밀번호가 일치하지 않습니다")
+            }
+        })
+        .then((data)=> {
+            console.log(data);
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
+
+    }
+</script>
+
+</body>
+</html>

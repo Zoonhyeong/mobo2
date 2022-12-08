@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOIN</title>
+    <link rel="stylesheet" href="../css/join.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<style>
+    #checking-red-bar{
+        position: absolute;
+        background-color: red;
+        width: 322px;
+        height: 2.5px;
+        top: 495px;
+        margin-left:130px;
+        display: none;
+    }
+</style>
+<body>
+<div class="flex-col-center">
+    <div id="checking-red-bar"></div>
+    <div id="top">M O B O</div>
+    <div><p id="text-top-join" onclick="window.location='join.html'">JOIN</p><p id="text-top-login" onclick="window.location='login.html'">LOGIN</p></div>
+    <div>
+        <p class="flex-row" id="MOBO-SUBLIST-MYSUB">
+            <a>MOBO</a>
+            <a>SUB LIST</a> 
+            <a>MYSUB</a>
+        </p>
+    </div>
+
+    <div class="flex-col-center" id="input-box">
+        <div class="flex-row" id="text-bord">
+            <div id="back-arrow" onclick="location.href='login.html'"></div>
+            <p>MOBO JOIN</p>
+        </div>
+        <div>
+        <div class="box-name-input flex-row">
+            <p class="input-name">ID</p>
+            <input id="user-id" class="input-text" type="text" placeholder="아이디를 입력해주세요">
+            <div id="check-btn" class="input-text flex-row-center">CHECK</div>
+        </div>
+        <div class="box-name-input flex-row">
+            <p class="input-name">PW</p>
+            <input id="user-pw" class="input-text" minlength="8" type="password" placeholder="비밀번호를 입력해주세요">
+        </div>
+        <div class="box-name-input flex-row">
+            <p class="input-name">PW CHECK</p>
+            <input id="user-pw-check" class="input-text" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
+        </div>
+        <div id="check-massage"></div>
+        <div class="box-name-input flex-row">
+            <p class="input-name">NICKNAME</p>
+            <input id="user-name" class="input-text" type="text" placeholder="별명을 입력해주세요">
+        </div>
+        <div class="box-name-input flex-row">
+            <p class="input-name">E-Mail</p>
+            <input id="user-email" class="input-text" type="email" placeholder="이메일을 입력해주세요">
+        </div>
+        <div class="box-name-input flex-row">
+            <p class="input-name">INTRO</p>
+            <input id="user-profile" class="input-text" type="text" placeholder="소개글을 입력해주세요">
+        </div>
+        <div class="box-name-input flex-row input-img">
+            <p class="input-name">PHOTO</p>
+            <input type="file" id="user-profile-picture">
+            <div class="upload-name">FILE NAME: </div>
+            <label for="user-profile-picture">UPLOAD</label>
+        </div>
+<div>
+<input type="checkbox" id="full-option">
+<label for="full-option">약관에 모두 동의합니다.</label>
+<div style="margin:21px 0 21px; width: 465px;height: 0px;border: 1px solid #7D2D00;"></div>
+<input type="checkbox" name="agreement" id="cb1">
+<label for="cb1">서비스 이용약관 동의(필수)</label>
+<a class="agreementLicense"style="width: 150px;" href="#">보기</a>
+<br>
+<input type="checkbox" name="agreement" id="cb2">
+<label for="cb2">개인정보 수집 및 이용 동의(필수)</label>
+<a class="agreementLicense"style="width: 106.7px;" href="#">보기</a>
+<br>
+<input type="checkbox" name="agreement" id="cb3">
+<label for="cb3">개인정보 제3자 제공 동의(필수)</label>
+<a class="agreementLicense"style="width: 119px;" href="#">보기</a>
+<br>
+<input type="checkbox" name="agreement" id="cb4">
+<label for="cb4">마케팅 수신 동의(선택)</label>
+<a class="agreementLicense"style="width: 182px;" href="#">보기</a>
+<br>
+<input type="checkbox" name="agreement" id="cb5">
+<label for="cb5">개인정보 수집 및 이용 안내(선택)</label>
+<a class="agreementLicense"style="width: 106.7px;" href="#">보기</a>
+<br>
+<div style="margin:21px 0 21px; width: 465px;height: 0px;border: 1px solid #7D2D00;"></div>
+<br>
+</div>
+
+<button class="flex-row-center input-text" id="join-btn" onclick="show_members()">JOIN</button>
+</div>
+    <p id="go-login">이미 회원이신가요? <a href="login.html">로그인</a>하러가기</p>
+    </div>
+
+    <div class="flex-row-center" id="bottom"><p>MYONGJI Uni. Team Project</p></div>
+</div>
+</body>
+<script>
+    function show_members(){
+    const username = document.getElementById("user-id")
+    const email = document.getElementById("user-email")
+    const password1 = document.getElementById("user-pw")
+    const password2 = document.getElementById("user-pw-check")
+    const nickname = document.getElementById("user-name")
+    const profile = document.getElementById("user-profile")
+    const profile_image = document.getElementById("user-profile-picture")
+
+        fetch("http://127.0.0.1:8000/api/signup/",{
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            username: username.value,
+            email: email.value,
+            password1: password1.value,
+            password2: password2.value,
+            nickname: nickname.value,
+            profile: profile.value,
+            }),
+        })
+        .then((result) => {console.log(result);
+            result.json();
+            if(result.status==201){
+                location='login.html'
+            } else if(result.status==400){
+                alert("이미 있는 id입니다.")
+            }
+        })
+        .then((data)=> {
+            console.log(data);
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
+    }
+
+</script>
+<script src="/js/join.js"></script>
+</html>

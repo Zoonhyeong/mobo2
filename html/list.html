@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <link rel="stylesheet" href="../css/list.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://kit.fontawesome.com/e26708e58d.js" crossorigin="anonymous"></script>
+    <script src="../js/list.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        #pop-up{
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        #pop-up > article{
+            width: 300px;
+            height: 350px;
+            position: relative;
+            z-index: 2;
+            top: 300px;
+            background: #EDEDED;;
+            border-radius: 10px;
+            border: 3px solid #7D2D00;
+            box-shadow: 2px 2px 5px rgb(66, 66, 66);
+            margin: auto;
+            cursor: pointer;
+            text-align: center;
+        }
+        .black{
+            background: rgba(0, 0, 0, 0.4);
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            $("#plus > button:first-of-type").click(function(){
+                $("#pop-up").fadeIn(500);
+                $("#pop-up").addClass("black");
+            });
+            $(".folder-create-box").click(function(){
+                if($.trim($("#folder-create").val())==''){
+                    alert("폴더명을 입력해주세요");
+                    return false;
+                }
+            });
+            $(".folder-create-cancel").click(function(){
+                $("#pop-up").fadeOut(500);
+            })
+
+        })
+
+    </script>
+</head>
+<body>
+
+<div class="flex-col-center">
+    <div id="top" onclick="listPage()">M O B O</div>
+    <div><p id="text-top-join" onclick="window.location='join.html'">JOIN</p><p id="text-top-login" onclick="window.location='login.html'">LOGOUT</p></div>
+        <div>
+        <p class="flex-row" id="MOBO-SUBLIST-MYSUB">
+            <a>MOBO</a>
+            <a>SUB LIST</a>
+            <a>MYSUB</a>
+        </p>
+    </div>
+    <div class="flex-col-center" id="list-box">
+        <div id="text-bord2">
+            <div class="list-line list-profile">
+                <p class="list-nickname" id="nickname" value=""></p>
+                <img src="../img/profile.png" alt="프로필사진" onclick="go_mypage()" id="profile-image">
+            </div>
+            <div class="list-line list-total">
+                <p class="list-title">12월 총 구독비용</p>
+                <p class="list-total-price"><span id="total-price"></span>원</p>
+            </div>
+            <div class="list-line list-sub-scroll">
+                <p class="list-title">나의 구독 정보</p>
+                <div class="scroll-area">
+                    <div class="list-plus-box" id="plus">
+                        <button>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="logo-image">
+                        <img src="../img/icon.png" alt="로고이미지">
+                    </div>
+                </div>
+            </div>
+            <div class="sub-btn">
+                <button onclick="nextPage()">
+                    <img src="../img/sub_plus_btn.PNG" alt="구독정보 추가버튼">
+                </button>
+            </div>
+        </div>
+        <!-- 팝업영역 -->
+        <div id="pop-up" class="pop-up">
+            <article>
+                <img src="../img/logo.png" alt="logo" class="logo-img">
+                <form action="#" id="create-form" autocomplete="off">
+                    <input type="text" name="folder-create" id="folder-create" placeholder="폴더명을 입력하세요">
+                    <div class="create-btn-box">
+                        <input type="submit" value="폴더추가" class="folder-create-box" onclick="create_folder()">
+                        <input type="button" value="취소" class="folder-create-cancel">
+                    </div>
+                </form>
+            </article>
+        </div>
+        <!-- 팝업영역 끝 -->
+    </div>
+
+    <div class="flex-row-center" id="bottom" style="z-index: 3;"><p>MYONGJI Uni. Team Project</p></div>
+</div>
+
+</body>
+</html>
