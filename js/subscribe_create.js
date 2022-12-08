@@ -82,11 +82,8 @@ function sub_create(){
                     })
                     .then((result) => {console.log(result);
                         result.json();
-                        if(result.status==200){
-                            console.log(data3[i].member)
-                            console.log(data3[i].id)
-                            location='list.html'
-                        } else if(result.status==400){
+                        location='list.html'
+                        if(result.status==400){
                             alert("error msg")
                         }
                     })
