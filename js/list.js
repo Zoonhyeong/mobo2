@@ -12,23 +12,23 @@ window.onload = function() {
         method: "GET",
     })
     .then((result) => {console.log(result);
-        let data = [];
+        let data4 = [];
 
         (async () => {
-        data = await result.json();
-        console.log(data.id);
+        data4 = await result.json();
+        console.log(data4.id);
 
-        nickname.innerHTML = data.nickname
+        nickname.innerHTML = data4.nickname
         // profile.innerHTML = data.profile_image
 
-        var member_id = data.id
+        var member_id = data4.id
         console.log(member_id)
 
 
         })();
     })
-    .then((data)=> {
-        console.log(data);
+    .then((data4)=> {
+        console.log(data4);
     })
     .catch((error)=>{
         console.log(error);

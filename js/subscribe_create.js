@@ -7,19 +7,19 @@ window.onload = function() {
         method: "GET",
     })
     .then((result) => {console.log(result);
-        let data = [];
+        let data2 = [];
         var option = new Array();
 
         (async () => {
-            data = await result.json()
-            for(let i = 0; i < data.length; i++){
-                console.log(data.group_name)
-                option[i] = data[i].group_name
+            data2 = await result.json()
+            for(let i = 0; i < data2.length; i++){
+                console.log(data2.group_name)
+                option[i] = data2[i].group_name
             }
-            for(let i=0; i < data.length; i++){
+            for(let i=0; i < data2.length; i++){
                 select_folder.innerHTML += `<option value="` + option[i] + `">` + option[i] + `</option>`
             }
-            console.log(data);
+            console.log(data2);
         })();
 
         // for(let i = 0; i < data.length; i++){
@@ -30,8 +30,8 @@ window.onload = function() {
         //     }
         // }
     })
-    .then((data)=> {
-        console.log(data);
+    .then((data2)=> {
+        console.log(data2);
     })
     .catch((error)=>{
         console.log(error);
@@ -56,16 +56,15 @@ function sub_create(){
         method: "GET",
     })
     .then((result) => {console.log(result);
-        let data = [];
+        let data3 = [];
         var result_group;
 
         (async () => {
-            data = await result.json()
+            data3 = await result.json()
             
-            console.log(data);
-            for(let i=0; i<data.length; i++){
-                if(category.value == data[i].group_name){
-                    fetch("http://127.0.0.1:8000/api/members/" + window.localStorage.getItem('name') + "/subscribe",{
+            console.log(data3);
+            for(let i=0; i<data3.length; i++){
+                fetch("http://127.0.0.1:8000/api/members/" + window.localStorage.getItem('name') + "/subscribe",{
                         method: "POST",
                         headers: {
                         "Content-Type": "application/json",
@@ -76,29 +75,31 @@ function sub_create(){
                         purchase_month: unit_month_first.value,
                         purchase_date: unit_month_date.value,
                         purchase_price: price.value,
-                        group: data[i].id,
+                        member: data3[i].member,
+                        group: data3[i].id
                         }),
                     })
                     .then((result) => {console.log(result);
                         result.json();
                         if(result.status==200){
+                            console.log(data3[i].member)
+                            console.log(data3[i].id)
                             location='list.html'
                         } else if(result.status==400){
                             alert("error msg")
                         }
                     })
-                    .then((data)=> {
-                        console.log(data);
+                    .then((data3)=> {
+                        console.log(data3);
                     })
                     .catch((error)=>{
                         console.log(error);
                     });
-                }
             }
         })();
     })
-    .then((data)=> {
-        console.log(data);
+    .then((data3)=> {
+        console.log(data3);
     })
     .catch((error)=>{
         console.log(error);

@@ -93,7 +93,7 @@
                                     <option value="enter">직접입력</option>
                                 </select>
                                 <div id="writing-box">
-                                    <input type="text" placeholder="구독 상품명을 입력해주세요">
+                                    <input type="text" placeholder="구독 상품명을 입력해주세요" autocomplete='off'>
                                 </div>
                             </div>
                             <script>
@@ -122,7 +122,7 @@
                         </div>
                         <div class="info-price flex-box">
                             <p>결제 금액</p>
-                            <input type="text" placeholder="정기구독 금액을 입력해주세요" class="input-box" id="pay-price">
+                            <input type="text" autocomplete='off' placeholder="정기구독 금액을 입력해주세요" class="input-box" id="pay-price">
                         </div>
                         <div class="info-date flex-box">
                             <p>결제 정보</p>
@@ -136,8 +136,8 @@
                                     <label for="radio-month">월</label>
                                     <br>
                                     <div id="month-box">
-                                        <input type="text" placeholder="1" class="input-box" id="month-unit">개월마다
-                                        <input type="text" placeholder="25" class="input-box" id="month-date">일에 결제됩니다.
+                                        <input type="text" placeholder="1" class="input-box" id="month-unit" autocomplete='off'>개월마다
+                                        <input type="text" placeholder="25" class="input-box" id="month-date" autocomplete='off'>일에 결제됩니다.
                                     </div>
                                     <div id="week-box">
                                         <input type="text" placeholder="1" class="input-box" id="week-unit">주마다 결제됩니다.
