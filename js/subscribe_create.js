@@ -64,7 +64,8 @@ function sub_create(){
             
             console.log(data3);
             for(let i=0; i<data3.length; i++){
-                fetch("http://127.0.0.1:8000/api/members/" + window.localStorage.getItem('name') + "/subscribe",{
+                if(category.value == data3[i].group_name){
+                    fetch("http://127.0.0.1:8000/api/members/" + window.localStorage.getItem('name') + "/subscribe",{
                         method: "POST",
                         headers: {
                         "Content-Type": "application/json",
@@ -95,6 +96,7 @@ function sub_create(){
                     .catch((error)=>{
                         console.log(error);
                     });
+                }
             }
         })();
     })
