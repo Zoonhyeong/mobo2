@@ -34,15 +34,89 @@ window.onload = function() {
         console.log(error);
     });
     
+    const scroll_box = document.querySelector("#scroll-box")
+    let box_html_str = "";
+    const box_html_str_div = "</div>";
+    let box_html_str2 = "";
+    let result_str = "";
+
     fetch("http://127.0.0.1:8000/api/members/"+window.localStorage.getItem('name')+"/subscribes-groups",{
         method: "GET",
     })
     .then((result) => {console.log(result);
 
+        let data_folder = [];
+        var folder_name = new Array();
         (async () => {
+            data_folder = await result.json()
             for(var i=0; i<arrList.length; i++){
                 arrList[i] = await result.json();
             }
+            for(let j = 0; j < data_folder.length; j++){
+                let result_str = "";
+                console.log(data_folder.group_name)
+                folder_name[j] = data_folder[j].group_name
+                box_html_str = `<div class="dropdown" id="dropdown-box">
+                                    <div class="list-sub-box box1 folder" onclick="drop_sub_list1()" style="margin-bottom: 15px;">
+                                        <i class="fa-regular fa-folder"></i>
+                                        <p class="sub-folder-name">` + data_folder[j].group_name +`</p>
+                                        <i class="fa-solid fa-bars"></i>
+                                    </div>`
+                result_str += box_html_str
+                fetch("http://127.0.0.1:8000/api/members/" + window.localStorage.getItem('name') + "/subscribe",{
+                    method: "GET",
+                })
+                .then((result) => {console.log(result);
+                    let data_subscribe = [];
+                    var subscribe_name = new Array();
+    
+                    (async () => {
+                        data_subscribe = await result.json();
+                        for(var x=0; x<subscribe_name.length; x++){
+                            subscribe_name[x] = await result.json();
+                        }
+                        for(let y = 0; y < data_subscribe.length; y++){
+                            console.log(data_subscribe.group)
+                            for(let z = 0; z < data_folder.length; z++){
+                                if(data_subscribe[y].group == data_folder[z].id){
+                                    box_html_str2 = `<div display="none" id="drop-content" class="folder-detail">
+                                                        <div class="list-sub-detail">
+                                                            <img src="../img/youtube.png" alt="logo1">
+                                                            <div class="sub-content">
+                                                                <p class="sub-name">`+ data_subscribe[y].name +`</p>
+                                                                <p class="sub-detail">매월 <span class="pay-day">`+ data_subscribe[y].purchase_month +`</span>일 결제</p>
+                                                                <p class="sub-detail">월 <span class="pay-price">`+ data_subscribe[y].purchase_price +`</span>원</p>
+                                                            </div>
+                                                            <i class="fa-solid fa-bars"></i>
+                                                        </div>`
+                                    result_str += box_html_str2
+                                }else{
+                                    continue;
+                                }
+                            }
+                        }
+                        result_str += `<div class="line"></div></div>`
+                    })();
+                })
+                .then((data)=> {
+                    console.log(data);
+                })
+                .catch((error)=>{
+                    console.log(error);
+                });
+
+                scroll_box.insertAdjacentHTML('afterbegin', result_str)
+            }
+
+
+
+            scroll_box.insertAdjacentHTML('beforeend', `
+            <div class="logo-image">
+                <img src="../img/icon.png" alt="로고이미지">
+            </div>
+            `)
+
+            
         // data = await result.json();
         })();
     })
@@ -158,7 +232,6 @@ function create_folder(){
             result.json();
             if(result.status==201){
                 console.log(result);
-                plus_folder_position.insertAdjacentHTML('afterend', newfolder);
             } else if(result.status==400){
                 alert("폴더명을 입력해주세요")
             }
@@ -186,7 +259,4 @@ function create_folder(){
     .catch((error)=>{
         console.log(error);
     });
-
-
 }
-
