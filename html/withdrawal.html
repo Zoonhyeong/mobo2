@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>탈퇴</title>
 </head>
 <style>
     #btn{
-        background-color: #b05d2d;
-        width:180px;
+        background-color: #b02d2d;
+        width:200px;
         height: 80px;
         margin: 30px 0 0 50px;
         display: flex;
@@ -26,33 +26,36 @@
     }
 </style>
 <script>
+    let service
+    let location_link
+    let service_name
     document.addEventListener("DOMContentLoaded",()=>{
-        let location_link
-        let service
-        let service_name
         const h1 = document.querySelector('h1')
-        h1.innerHTML = `${service} 구독 취소하기`
 
-        fetch("http://127.0.0.1:8000/api/members/"+window.localStorage.getItem('name')+"/subscribe-lists",{
+        fetch("http://127.0.0.1:8000/api/members/"+window.localStorage.getItem('name')+"/subscribe",{
             method: "GET",
         })
         .then((result) => {console.log(result);
-            let data4 = [];
-    
-            (async () => {
-            data4 = await result.json();
-            console.log(data4);
-            if(data.name == "유튜브 프리미엄"){
-                service = "Youtube Premium"
-                location_link = "https://www.youtube.com/paid_memberships"
-                service_name = document.getElementById('youtube')
-            } else if(data.name == "netflix"){
-                service = "netflix"
-                location_link = "https://www.netflix.com/cancelplan"
-                service_name = document.getElementById('netflix')
-            }
-            h1.innerHTML = `${service} 구독 취소하기`
-            service_name.style.display = "block"
+                let data4 = [];
+                (async () => {
+                    data4 = await result.json();
+                    console.log(data4);
+                    for(let i = 0; i < data4.length; i++){
+                    if(data4[i].id == localStorage.getItem('id')){
+                        if(data4[i].name == "유튜브 프리미엄"){
+                            service = "Youtube Premium"
+                            location_link = "https://www.youtube.com/paid_memberships"
+                            const service_name = document.getElementById('youtube')
+                            service_name.style.display = "block"
+                        } else if(data4[i].name == "netflix" || data4[i].name == "넷플릭스"){
+                            service = "Netflix"
+                            location_link = "https://www.netflix.com/cancelplan"
+                            const service_name = document.getElementById('netflix')
+                            service_name.style.display = "block"
+                        }
+                        h1.innerHTML = `${service} 구독 취소하기`
+                    }
+                }
             })();
         })
         .then((data4)=> {
@@ -61,19 +64,20 @@
         .catch((error)=>{
             console.log(error);
         });
+
     })
     function go(){
-        location.href = `${location_link}`
+        window.location.href = `${location_link}`
     }
 </script>
 <body>
-    <h1 style="margin-left: 50px"></h1>
-    <div id="btn" onclick="go()">지금 취소하기</div>
+    <h1 style="margin: 30px 0 40px 50px;"></h1>
+    <div id="btn" onclick="go()">탈퇴하기</div>
     <div style="display: none" id="youtube">
-        <img style="height:500px" src="/img/youtube_withdrawal.gif">
+        <img style="height:600px" src="/img/youtube_withdrawal.gif">
     </div>
     <div style="display: none" id="netflix">
-        <img style="height:500px" src="/img/netflix_withdrawal.PNG">
+        <img style="height:600px" src="/img/netflix_withdrawal.PNG">
     </div>
 </body>
 </html>

@@ -7,7 +7,6 @@ body{
     color: #FFFFFF;
     font-size: 55px;
     font-weight: 700;
-
     position: fixed;
     background-color: #EA9D04;
     width: 100%;
@@ -72,6 +71,7 @@ body{
     margin-bottom: 0;
 }
 #back-arrow{
+    cursor: pointer;
     position: absolute;
     margin-right: 400px;
     width: 34px;

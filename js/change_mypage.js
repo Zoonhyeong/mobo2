@@ -55,3 +55,6 @@ function put_data(){
 function lastPage(){
     history.back();
 }
+function listPage(){
+    location.href="list.html"
+}

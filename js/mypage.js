@@ -37,3 +37,7 @@ function nextPage(){
 function editPage(){
     location.href="change_mypage.html"
 }
+
+function listPage(){
+    location.href="list.html"
+}

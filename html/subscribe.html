@@ -51,16 +51,16 @@
             .then((result) => {console.log(result);
                 let data_subscribe = [];
                 (async () => {
-                    data_subscribe = await result.json();
+                data_subscribe = await result.json();
                     console.log(data_subscribe);
                     for(let i = 0; i < data_subscribe.length; i++){
                         if(data_subscribe[i].id == localStorage.getItem('id')){
                             service.innerHTML = data_subscribe[i].name
-                            month.innerHTML = data_subscribe[i].purchase_month
+                            month.innerHTML = data_subscribe[i].purchase_date
                             const today = new Date()
                             const m = ('0' + (today.getMonth() + 1)).slice(-2);
                             const day= ('0' + today.getDate()).slice(-2);
-                            let d_day = data_subscribe[i].purchase_month-day
+                            let d_day = data_subscribe[i].purchase_date-day
                             if(d_day < 0){
                                 if(m == 1||m == 3||m == 5||m == 7||m == 8||m == 10||m == 12){
                                     d_day += 31
@@ -71,7 +71,7 @@
                                 }
                             }
                             Dday.innerHTML = d_day
-                            price.innerHTML = data_subscribe[i].price
+                            price.innerHTML = data_subscribe[i].purchase_price
                     }
                 }
                 })();
@@ -99,11 +99,11 @@
 <body>
 
 <div class="flex-col-center">
-    <div id="top" onclick="listPage()">M O B O</div>
+    <div style="cursor: pointer;" id="top" onclick="listPage()">M O B O</div>
         <div>
         <p class="flex-row" id="MOBO-SUBLIST-MYSUB">
             <a onclick="window.location='join.html'">JOIN</a>
-            <a>SUB LIST</a>
+            <a onclick="listPage()">SUB LIST</a>
             <a onclick="window.location='login.html'">LOGOUT</a>
         </p>
     </div>
@@ -131,7 +131,7 @@
                 </div>
             </div>
             <div class="sub-withdrawal-info">
-                <p onclick="location.href='withdrawal.html'" class="withdrawal-info">탈퇴정보</p>
+                <p style="cursor: pointer;" onclick="location.href='withdrawal.html'" class="withdrawal-info">탈퇴정보</p>
             </div>
         </div>
     </div>

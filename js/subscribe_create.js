@@ -105,3 +105,7 @@ function sub_create(){
     });
 
 }
+
+function listPage(){
+    location.href="list.html"
+}   

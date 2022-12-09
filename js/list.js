@@ -63,7 +63,7 @@ window.onload = function() {
                         console.log(data_folder.group_name)
                         folder_name[j] = data_folder[j].group_name
                         box_html_str = `<div class="dropdown" id="dropdown-box">
-                                            <div class="list-sub-box box1 folder" onclick="drop_sub_list`+(j+1)+`()" style="margin-bottom: 15px;">
+                                            <div style="cursor: pointer;" class="list-sub-box box1 folder" onclick="drop_sub_list`+(j+1)+`()" style="margin-bottom: 15px;">
                                                 <i class="fa-regular fa-folder"></i>
                                                 <p class="sub-folder-name">` + data_folder[j].group_name +`</p>
                                                 <i class="fa-solid fa-bars"></i>
@@ -77,9 +77,9 @@ window.onload = function() {
                                 console.log(data_subscribe[y].group)
                                 box_html_str2 = `<div class="list-sub-detail">
                                                     <img src="../img/youtube.png" alt="logo1">
-                                                    <div class="sub-content" onclick="go_subscribe('${data_subscribe[y].id}')">
+                                                    <div style="cursor: pointer;" class="sub-content" onclick="go_subscribe('${data_subscribe[y].id}')">
                                                         <p class="sub-name">`+ data_subscribe[y].name +`</p>
-                                                        <p class="sub-detail">매월 <span class="pay-day">`+ data_subscribe[y].purchase_month +`</span>일 결제</p>
+                                                        <p class="sub-detail">매월 <span class="pay-day">`+ data_subscribe[y].purchase_date +`</span>일 결제</p>
                                                         <p class="sub-detail">월 <span class="pay-price">`+ data_subscribe[y].purchase_price +`</span>원</p>
                                                     </div>
                                                     <i class="fa-solid fa-bars"></i>

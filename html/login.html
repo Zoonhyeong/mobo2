@@ -11,7 +11,7 @@
 <body>
 
 <div class="flex-col-center">
-    <div id="top">M O B O</div>
+    <div style="cursor: pointer;" onclick="window.location='login.html'" id="top">M O B O</div>
         <div>
         <p class="flex-row" id="MOBO-SUBLIST-MYSUB">
             <a onclick="window.location='join.html'">JOIN</a>
@@ -26,7 +26,7 @@
         <div class="flex-col-center">
             <input name="username" type="text" class="input-text" id="email-btn" placeholder="아이디를 입력해주세요">
             <input name="password" type="password" class="input-text" id="passwd-btn" placeholder="비밀번호를 입력해주세요" minlength="8">
-            <button class="flex-row-center input-text" id="login-btn" onclick="show_members()">LOGIN</button>
+            <button style="cursor: pointer;" class="flex-row-center input-text" id="login-btn" onclick="show_members()">LOGIN</button>
             <p id="go-join">아직 회원이 아니신가요? <a href="join.html">회원가입</a>하러가기</p>
         </div>
     </div>
@@ -52,7 +52,6 @@
             console.log(result);
             result.json();
             if(result.status==200){
-                
                 window.localStorage.setItem('name', username.value)
                 window.localStorage.setItem('password', password.value)
                 location='list.html'
