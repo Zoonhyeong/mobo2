@@ -77,7 +77,7 @@ window.onload = function() {
                                 console.log(data_subscribe[y].group)
                                 box_html_str2 = `<div class="list-sub-detail">
                                                     <img src="../img/youtube.png" alt="logo1">
-                                                    <div class="sub-content">
+                                                    <div class="sub-content" onclick="go_subscribe('${data_subscribe[y].id}')">
                                                         <p class="sub-name">`+ data_subscribe[y].name +`</p>
                                                         <p class="sub-detail">매월 <span class="pay-day">`+ data_subscribe[y].purchase_month +`</span>일 결제</p>
                                                         <p class="sub-detail">월 <span class="pay-price">`+ data_subscribe[y].purchase_price +`</span>원</p>
@@ -336,4 +336,9 @@ function create_folder(){
     .catch((error)=>{
         console.log(error);
     });
+}
+
+function go_subscribe(id){
+    window.localStorage.setItem('id', id)
+    location.href='subscribe.html'
 }

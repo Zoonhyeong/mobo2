@@ -39,6 +39,50 @@
         }
     </style>
     <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const service = document.getElementById('service-name')
+            const month = document.getElementById('month')
+            const Dday = document.getElementById('d-day')
+            const price = document.getElementById('price')
+
+            fetch("http://127.0.0.1:8000/api/members/"+window.localStorage.getItem('name')+"/subscribe",{
+                method: "GET",
+            })
+            .then((result) => {console.log(result);
+                let data_subscribe = [];
+                (async () => {
+                    data_subscribe = await result.json();
+                    console.log(data_subscribe);
+                    for(let i = 0; i < data_subscribe.length; i++){
+                        if(data_subscribe[i].id == localStorage.getItem('id')){
+                            service.innerHTML = data_subscribe[i].name
+                            month.innerHTML = data_subscribe[i].purchase_month
+                            const today = new Date()
+                            const m = ('0' + (today.getMonth() + 1)).slice(-2);
+                            const day= ('0' + today.getDate()).slice(-2);
+                            let d_day = data_subscribe[i].purchase_month-day
+                            if(d_day < 0){
+                                if(m == 1||m == 3||m == 5||m == 7||m == 8||m == 10||m == 12){
+                                    d_day += 31
+                                }else if(m==2){
+                                    d_day += 28
+                                }else{
+                                    d_day += 30
+                                }
+                            }
+                            Dday.innerHTML = d_day
+                            price.innerHTML = data_subscribe[i].price
+                    }
+                }
+                })();
+            })
+            .then((data)=> {
+                console.log(data);
+            })
+            .catch((error)=>{
+                console.log(error);
+            });
+        })
         $(document).ready(function(){
             $("#plus > button:first-of-type").click(function(){
                 $("#pop-up").fadeIn();
@@ -71,19 +115,19 @@
                 <i class="fa-solid fa-pencil"></i>
             </div>
             <div class="sub-info-detail">
-                <img src="../img/youtube.png" alt="logo1">
+                <img src="../img/icon.png" id="icon" alt="logo1">
                 <div class="sub-content">
-                    <p class="sub-name" style="min-width: 290px; margin-left: 20px; padding-bottom: 0px;">YOUTUBE PREMIUM 구독</p>
-                    <p class="sub-detail" style="min-width: 290px; margin-left: 20px;">매월 <span class="pay-day">12</span>일 결제</p>
+                    <p class="sub-name" style="min-width: 290px; margin-left: 20px; padding-bottom: 0px;" id="service-name"></p>
+                    <p class="sub-detail" style="min-width: 290px; margin-left: 20px;">매월 <span id="month" class="pay-day"></span>일 결제</p>
                 </div>
             </div>
             <div class="sub-info">
-                <p class="sub-info-day">D - <span>24</span></p>
-                <p class="sub-info-price">월 <span>8,960</span>원</p>
+                <p class="sub-info-day">D - <span id="d-day"></span></p>
+                <p class="sub-info-price">월 <span id="price"></span>원</p>
             </div>
             <div class="sub-cumulative-price sub-info-detail">
                 <div class="sub-content">
-                    <p class="cumulative-price">누적금액 : <span>160,000</span>원</p>
+                    <p class="cumulative-price">누적금액 : <span>-</span>원</p>
                 </div>
             </div>
             <div class="sub-withdrawal-info">
