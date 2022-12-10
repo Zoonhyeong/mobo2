@@ -52,6 +52,11 @@
                             location_link = "https://www.netflix.com/cancelplan"
                             const service_name = document.getElementById('netflix')
                             service_name.style.display = "block"
+                        } else if(data4[i].name == "melon" || data4[i].name == "멜론"){
+                            service = "Melon"
+                            location_link = "https://www.melon.com/"
+                            const service_name = document.getElementById('melon')
+                            service_name.style.display = "block"
                         }
                         h1.innerHTML = `${service} 구독 취소하기`
                     }
@@ -78,6 +83,12 @@
     </div>
     <div style="display: none" id="netflix">
         <img style="height:600px" src="/img/netflix_withdrawal.PNG">
+    </div>
+    <div style="display: none" id="melon">
+        <img style="height:300px" src="/img/mellon_withdrawal(1).PNG">
+        <img style="height:300px" src="/img/mellon_withdrawal(2).PNG">
+        <img style="height:300px" src="/img/mellon_withdrawal(3).PNG">
+        <img style="height:300px" src="/img/mellon_withdrawal(4).PNG">
     </div>
 </body>
 </html>
