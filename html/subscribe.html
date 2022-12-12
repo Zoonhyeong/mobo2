@@ -44,6 +44,8 @@
             const month = document.getElementById('month')
             const Dday = document.getElementById('d-day')
             const price = document.getElementById('price')
+            const accum = document.getElementById('accumulate')
+            const icon_img = document.getElementById('icon')
 
             fetch("http://127.0.0.1:8000/api/members/"+window.localStorage.getItem('name')+"/subscribe",{
                 method: "GET",
@@ -72,6 +74,16 @@
                             }
                             Dday.innerHTML = d_day
                             price.innerHTML = data_subscribe[i].purchase_price
+                            accum.innerHTML = data_subscribe[i].sum_price
+                            if(data_subscribe[i].name == "유튜브 프리미엄"){
+                                icon_img.setAttribute("src", "../img/youtube.png")
+                            } else if(data_subscribe[i].name == "netflix" || data_subscribe[i].name == "넷플릭스"){
+                                icon_img.setAttribute('src', "../img/netflix.png")
+                            } else if(data_subscribe[i].name == "melon" || data_subscribe[i].name == "멜론"){
+                                icon_img.setAttribute('src', "../img/melon.png")
+                            } else{
+                                icon_img.setAttribute('src', "../img/icon.png")
+                            }
                     }
                 }
                 })();
@@ -127,7 +139,7 @@
             </div>
             <div class="sub-cumulative-price sub-info-detail">
                 <div class="sub-content">
-                    <p class="cumulative-price">누적금액 : <span>-</span>원</p>
+                    <p class="cumulative-price">누적금액 : <span id="accumulate"></span>원</p>
                 </div>
             </div>
             <div class="sub-withdrawal-info">

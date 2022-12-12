@@ -44,7 +44,7 @@ window.onload = function() {
         method: "GET",
     })
     .then((result) => {console.log(result);
-
+        let icon_img
         let data_folder = [];
         var folder_name = new Array();
         (async () => {
@@ -75,8 +75,17 @@ window.onload = function() {
                             if(data_folder[j].id == data_subscribe[y].group){
                                 console.log(data_folder[j].id)
                                 console.log(data_subscribe[y].group)
+                                if(data_subscribe[y].name == "유튜브 프리미엄"){
+                                    icon_img = "../img/youtube.png"
+                                } else if(data_subscribe[y].name == "netflix" || data_subscribe[y].name == "넷플릭스"){
+                                    icon_img="../img/netflix.png"
+                                } else if(data_subscribe[y].name == "melon" || data_subscribe[y].name == "멜론"){
+                                    icon_img="../img/melon.png"
+                                } else{
+                                    icon_img="../img/icon.png"
+                                }
                                 box_html_str2 = `<div class="list-sub-detail">
-                                                    <img src="../img/youtube.png" alt="logo1">
+                                                    <img src=`+icon_img+` alt="logo1">
                                                     <div style="cursor: pointer;" class="sub-content" onclick="go_subscribe('${data_subscribe[y].id}')">
                                                         <p class="sub-name">`+ data_subscribe[y].name +`</p>
                                                         <p class="sub-detail">매월 <span class="pay-day">`+ data_subscribe[y].purchase_date +`</span>일 결제</p>
